@@ -1,0 +1,16 @@
+@import "../../../scss/variable";
+
+.menuItem {
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    justify-content: flex-end;
+    align-items: center;
+    text-decoration: none;
+    
+    .label {
+        color: $text;
+        padding: 0 20px;
+        font-size: 24px;
+    }
+}

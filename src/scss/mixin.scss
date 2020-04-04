@@ -1,0 +1,13 @@
+@mixin softUi($bg1, $bg2, $gradient1, $gradient2) {
+    background: linear-gradient(145deg, $bg1, $bg2);
+    box-shadow: 5px 5px 10px $gradient1,
+    -5px -5px 10px $gradient2;
+    &:active {
+        background: linear-gradient(145deg, $bg2, $bg1);
+    }
+}
+
+@mixin softUiDark {
+    @include softUi(#2a2d33, #23262b, #101113, #3e434d);
+}
+

@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react",
+    "lib": ["dom", "esnext"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@public/*": ["public/*"],
+      "@main/*": ["src/main/*"],
+      "@models/*": ["src/models/*"],
+      "@utils/*": ["src/utils/*"],
+      "@components/*": ["src/components/*"],
+      "@controllers/*": ["src/controllers/*"],
+      "@assets/*": ["src/assets/*"],
+      "@scss/*": ["src/scss/*"]
+    },
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "sourceMap": true,
+    "target": "esnext",
+    "module": "esnext",
+    "esModuleInterop": true
+  },
+  "exclude": ["node_modules"]
+}

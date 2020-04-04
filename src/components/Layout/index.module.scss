@@ -1,0 +1,9 @@
+@import "../../scss/variable";
+
+.layout {
+    display: flex;
+    flex-direction: column;
+    background: $bg;
+    height: 100vh;
+    color: $text;
+}

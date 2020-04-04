@@ -1,0 +1,15 @@
+@import "../../../scss/mixin";
+
+.button {
+    border-radius: 50%;
+    cursor: pointer;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    outline: none;
+    
+    @include softUiDark;
+}

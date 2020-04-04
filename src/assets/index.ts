@@ -1,0 +1,11 @@
+export {default as add} from './add.svg';
+export {default as checkbox} from './checkbox.svg';
+export {default as close} from './close.svg';
+export {default as info} from './info.svg';
+export {default as menu} from './menu.svg';
+export {default as pause} from './pause.svg';
+export {default as play} from './play.svg';
+export {default as prev} from './prev.svg';
+export {default as settings} from './settings.svg';
+export {default as tick} from './tick.svg';
+export {default as home} from './home.svg';
