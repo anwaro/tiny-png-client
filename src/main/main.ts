@@ -1,21 +1,20 @@
 /**
  * Entry point of the Election app.
  */
-import {app, BrowserWindow} from 'electron';
+import Electron, {app, BrowserWindow} from 'electron';
+import installExtension, {REACT_DEVELOPER_TOOLS} from 'electron-devtools-installer';
 import {join} from 'path';
 import {format} from 'url';
 
 let mainWindow: Electron.BrowserWindow | null;
 
 function createWindow(): void {
-    // Create the browser window.
     mainWindow = new BrowserWindow({
-        height: 600,
+        height: 800,
         width: 600,
-        resizable: false,
-        fullscreen: false,
         webPreferences: {
-            webSecurity: false,
+            nodeIntegration: true,
+            webSecurity: true,
             // devTools: process.env.NODE_ENV === 'production' ? false : true
             devTools: true,
         },
@@ -39,6 +38,9 @@ function createWindow(): void {
     });
 
     mainWindow.webContents.openDevTools();
+    installExtension(REACT_DEVELOPER_TOOLS)
+        .then((name: any) => console.log(`Added Extension:  ${name}`))
+        .catch((err: any) => console.log('An error occurred: ', err));
 }
 
 // This method will be called when Electron has finished
@@ -62,6 +64,3 @@ app.on('activate', () => {
         createWindow();
     }
 });
-
-// In this file you can include the rest of your app"s specific main process
-// code. You can also put them in separate files and require them here.

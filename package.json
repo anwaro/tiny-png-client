@@ -51,6 +51,7 @@
     },
     "devDependencies": {
         "@types/classnames": "^2.2.10",
+        "@types/electron-devtools-installer": "^2.2.0",
         "@types/mocha": "^5.2.7",
         "@types/react-redux": "^7.1.7",
         "@types/react-router": "^4.4.5",
@@ -64,6 +65,7 @@
         "css-loader": "^2.1.1",
         "electron": "^8.2.0",
         "electron-builder": "^22.4.1",
+        "electron-devtools-installer": "^2.2.4",
         "eslint": "^5.16.0",
         "eslint-config-airbnb": "^18.1.0",
         "eslint-config-prettier": "^6.10.0",

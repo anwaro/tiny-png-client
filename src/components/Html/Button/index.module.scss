@@ -11,5 +11,5 @@
     border: none;
     outline: none;
     
-    @include softUiDark;
+    @include softUiDark(true);
 }

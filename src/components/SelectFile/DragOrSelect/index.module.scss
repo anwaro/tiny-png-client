@@ -1,0 +1,15 @@
+.container {
+    border-radius: 10px;
+    display: flex;
+    flex-grow: 1;
+    
+    &.active {
+        cursor: pointer;
+    }
+    
+    &.drag {
+        border: 2px #ef5b0a dashed;
+        color: #ef5b0a;
+        cursor: grabbing;
+    }
+}

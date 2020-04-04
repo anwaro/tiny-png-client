@@ -1,32 +1,32 @@
-import { useDispatch, useSelector } from "react-redux";
+import {useDispatch, useSelector} from 'react-redux';
 
-import { Category } from "@/iterfaces/Category";
-import { Store } from "@/store";
+import {TinyFile} from '@/iterfaces/TinyFile';
+import {Store} from '@/store';
 
-import { setActiveCategory, setAvailableCategories } from "./actionCreators";
+import {setActiveCategory, setAvailableCategories} from './actionCreators';
 
 export const useAvailableCategories = (): [
-  Category[],
-  (availableCategories: Category[]) => void
+    TinyFile[],
+    (availableCategories: TinyFile[]) => void,
 ] => {
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  return [
-    useSelector<Store, Category[]>((state) => state.image.availableCategories),
-    (availableCategories: Category[]) =>
-      dispatch(setAvailableCategories(availableCategories)),
-  ];
+    return [
+        useSelector<Store, TinyFile[]>((state) => state.image.availableCategories),
+        (availableCategories: TinyFile[]) =>
+            dispatch(setAvailableCategories(availableCategories)),
+    ];
 };
 
 export const useActiveCategory = (): [
-  Category | undefined,
-  (availableCategories: Category) => void
+    TinyFile | undefined,
+    (availableCategories: TinyFile) => void,
 ] => {
-  const dispatch = useDispatch();
-  return [
-    useSelector<Store, Category | undefined>(
-      (state) => state.image.activeCategory
-    ),
-    (activeCategory: Category) => dispatch(setActiveCategory(activeCategory)),
-  ];
+    const dispatch = useDispatch();
+    return [
+        useSelector<Store, TinyFile | undefined>(
+            (state) => state.image.activeCategory,
+        ),
+        (activeCategory: TinyFile) => dispatch(setActiveCategory(activeCategory)),
+    ];
 };

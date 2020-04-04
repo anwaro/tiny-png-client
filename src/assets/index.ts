@@ -9,3 +9,4 @@ export {default as prev} from './prev.svg';
 export {default as settings} from './settings.svg';
 export {default as tick} from './tick.svg';
 export {default as home} from './home.svg';
+export {default as folder} from './folder.svg';

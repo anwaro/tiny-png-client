@@ -3,6 +3,7 @@ import React from 'react';
 import {useHistory} from 'react-router-dom';
 
 import {IconProps} from '@components/Html/Icon';
+
 import Button from '@components/Html/Button';
 
 import styles from './index.module.scss';
@@ -22,16 +23,14 @@ const Navigation: React.FC<NavigationProps> = ({leftIcon, title}) => {
 
     return (
         <nav className={styles.nav}>
-            <div>
-                {leftIcon ? (
-                    <Button
-                        icon={leftIcon.icon}
-                        onClick={() => leftIcon.action(history)}
-                    />
-                ) : null}
-            </div>
+            {leftIcon ? (
+                <Button
+                    className={styles.button}
+                    icon={leftIcon.icon}
+                    onClick={() => leftIcon.action(history)}
+                />
+            ) : null}
             <div>{title}</div>
-            <div />
         </nav>
     );
 };
