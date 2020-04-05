@@ -1,18 +1,15 @@
 import React from 'react';
 
-import Menu from '@components/Layout/Menu';
-
-import Navigation, {NavigationProps} from '@components/Layout/Navigation';
+import Menu, {MenuProps} from '@components/Layout/Menu';
 
 import styles from './index.module.scss';
 
-type LayoutProps = NavigationProps & {};
+type LayoutProps = MenuProps & {};
 
-const Layout: React.FC<LayoutProps> = ({children, title, leftIcon}) => {
+const Layout: React.FC<LayoutProps> = ({children, leftIcon}) => {
     return (
         <div className={styles.layout}>
-            <Navigation title={title} leftIcon={leftIcon} />
-            <Menu />
+            <Menu leftIcon={leftIcon} />
             {children}
         </div>
     );

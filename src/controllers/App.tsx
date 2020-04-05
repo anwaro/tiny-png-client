@@ -2,7 +2,7 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 
-import AppRouter from '@/controller/Router/AppRouter';
+import AppRouter from '@/controllers/Router/AppRouter';
 
 import {persistor, store} from '../store/index';
 

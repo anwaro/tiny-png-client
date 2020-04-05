@@ -2,9 +2,9 @@ import React from 'react';
 import {HashRouter as Router, Route} from 'react-router-dom';
 import {AnimatedSwitch} from 'react-router-transition';
 
-import About from '@/controller/About';
-import Dashboard from '@/controller/Dashboard';
-import Wrapper from '@/controller/Router/Wrapper';
+import About from '@/controllers/About';
+import Dashboard from '@/controllers/Dashboard';
+import Wrapper from '@/controllers/Router/Wrapper';
 
 import styles from './index.module.scss';
 

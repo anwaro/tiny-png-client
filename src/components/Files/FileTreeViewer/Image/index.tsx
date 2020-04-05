@@ -1,16 +1,19 @@
 import React from 'react';
+import classNames from 'classnames';
 
-import {TinyTreeFile} from '@/iterfaces/TinyFile';
+import {hashClassName} from '@utils/hashClassName';
+
+import {FileTree} from '@/iterfaces/TinyFile';
 
 import styles from './index.module.scss';
 
 type ImageProps = {
-    image: TinyTreeFile;
+    image: FileTree;
 };
 
 const Image: React.FC<ImageProps> = ({image}) => {
     return (
-        <div className={styles.image}>
+        <div className={classNames(styles.image, hashClassName(image.path))}>
             <img className={styles.img} src={image.path} alt={image.name} />
             <div className={styles.imageName}>{image.name}</div>
         </div>

@@ -1,10 +1,8 @@
 import {parse, sep} from 'path';
 
-import {
-    TinyFileInfo,
-    TinyTreeFile,
-    TinyTreeFileChildren,
-} from '@/iterfaces/TinyFile';
+import {reduceFileTree} from '@utils/reduceFileTree';
+
+import {FileInfo, FileTree, FileChildren} from '@/iterfaces/TinyFile';
 
 import {readDirFilesRecursive} from '@utils/readDirFiles';
 
@@ -19,12 +17,12 @@ export const splitPath = (path: string) => {
 };
 
 export const mergeTreesRecursive = (
-    originChildren: TinyTreeFileChildren,
-    treeChildren: TinyTreeFileChildren,
-): TinyTreeFileChildren => ({
+    originChildren: FileChildren,
+    treeChildren: FileChildren,
+): FileChildren => ({
     ...originChildren,
     ...Object.keys(treeChildren).reduce(
-        (obj: TinyTreeFileChildren, key: string) =>
+        (obj: FileChildren, key: string) =>
             originChildren.hasOwnProperty(key)
                 ? {
                       ...obj,
@@ -37,11 +35,11 @@ export const mergeTreesRecursive = (
                       },
                   }
                 : {...obj, [key]: treeChildren[key]},
-        {} as TinyTreeFileChildren,
+        {} as FileChildren,
     ),
 });
 
-export const mergeTrees = (origin: TinyTreeFile | undefined, tree: TinyTreeFile) =>
+export const mergeTrees = (origin: FileTree | undefined, tree: FileTree) =>
     origin
         ? {
               ...origin,
@@ -49,17 +47,13 @@ export const mergeTrees = (origin: TinyTreeFile | undefined, tree: TinyTreeFile)
           }
         : tree;
 
-//
-export const addFileToTree = (
-    tree: TinyTreeFile | undefined,
-    file: TinyFileInfo,
-) => {
+export const addFileToTree = (tree: FileTree | undefined, file: FileInfo) => {
     const pathParts = splitPath(file.path).reverse();
     const topPart = pathParts.shift();
     let childKey = topPart || '';
 
     const pathTree = pathParts.reduce(
-        (childTree: TinyTreeFile, path: string) => {
+        (childTree: FileTree, path: string) => {
             const key = childKey;
             childKey = path;
             return {
@@ -78,9 +72,9 @@ export const addFileToTree = (
 
 export const flatListToTree = (fileList: string[]) => {
     const allPaths = readDirFilesRecursive(fileList);
-
-    return allPaths.reduce(
-        (tree: TinyTreeFile | undefined, path) => addFileToTree(tree, path),
+    const allFile = allPaths.reduce(
+        (tree: FileTree | undefined, path) => addFileToTree(tree, path),
         undefined,
     );
+    return allFile ? reduceFileTree(allFile) : allFile;
 };

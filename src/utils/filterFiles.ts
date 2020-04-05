@@ -1,6 +1,6 @@
 import {parse} from 'path';
 
-import {TinyFileInfo} from '@/iterfaces/TinyFile';
+import {FileInfo} from '@/iterfaces/TinyFile';
 
 export const IMAGES_EXT = ['.jpg', '.jpeg', '.png', '.gif'];
 
@@ -9,6 +9,8 @@ const isImage = (path: string) => {
     return IMAGES_EXT.includes(parsedPath.ext);
 };
 
-export const validFile = (file: TinyFileInfo): boolean => {
-    return file.isDir || isImage(file.path);
+export const isHiddenFile = (name: string) => /^\..*/.test(name);
+
+export const validFile = (file: FileInfo): boolean => {
+    return !isHiddenFile(file.name) && (file.isDir || isImage(file.path));
 };

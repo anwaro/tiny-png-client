@@ -1,27 +1,44 @@
 import React from 'react';
 
-import {TinyTreeFile} from '@/iterfaces/TinyFile';
-
+import {Status} from '@/const/status';
+import {FileTree} from '@/iterfaces/TinyFile';
 import AutoScrollSwitcher from '@components/Files/AutoScrollSwitcher';
-
 import FileListHeader from '@components/Files/FileListHeader';
-import FileTree from '@components/Files/FileTree';
-import UiBox from '@components/Html/UiBox';
+import FileTreeViewer from '@components/Files/FileTreeViewer';
+import DragActiveInfo from '@components/SelectFile/DragActiveInfo';
 
 import styles from './index.module.scss';
 
 type FilesListProps = {
-    filesTree: TinyTreeFile | undefined;
+    filesTree: FileTree | undefined;
     status: number;
+    onCancel: () => void;
+    onPause: () => void;
+    onStart: () => void;
 };
 
-const FilesList: React.FC<FilesListProps> = ({status, filesTree}) => {
+const FilesList: React.FC<FilesListProps> = ({
+    onCancel,
+    onPause,
+    onStart,
+    status,
+    filesTree,
+}) => {
     return (
-        <UiBox className={styles.filesList}>
-            <FileListHeader status={status} />
-            {filesTree ? <FileTree filesTree={filesTree} /> : null}
+        <div className={styles.filesList}>
+            <FileListHeader
+                status={status}
+                onCancel={onCancel}
+                onPause={onPause}
+                onStart={onStart}
+            />
+            {status === Status.Empty ? (
+                <DragActiveInfo />
+            ) : filesTree ? (
+                <FileTreeViewer filesTree={filesTree} />
+            ) : null}
             <AutoScrollSwitcher />
-        </UiBox>
+        </div>
     );
 };
 

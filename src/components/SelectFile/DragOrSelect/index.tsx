@@ -1,8 +1,6 @@
 import classNames from 'classnames';
 import React, {DragEvent, useState} from 'react';
 
-import {act} from 'react-dom/test-utils';
-
 import UiBox from '@components/Html/UiBox';
 import {fileListToPathList} from '@utils/fileListToPathList';
 import {openFileSelectDialog} from '@utils/openFileSelectDialog';

@@ -2,9 +2,9 @@ import {lstatSync} from 'fs';
 
 import {parse} from 'path';
 
-import {TinyFileInfo} from '@/iterfaces/TinyFile';
+import {FileInfo} from '@/iterfaces/TinyFile';
 
-export const readFileInfo = (path: string): TinyFileInfo => {
+export const readFileInfo = (path: string): FileInfo => {
     const pathInfo = lstatSync(path);
     const parsedPath = parse(path);
     return {

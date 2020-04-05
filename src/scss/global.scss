@@ -1,8 +1,10 @@
 @import "fonts";
+@import "variable";
 
 html, body {
     box-sizing: border-box;
     font-family: 'Oswald', sans-serif;
+    background: $dark;
 }
 
 *,

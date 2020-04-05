@@ -3,13 +3,23 @@
 .button {
     border-radius: 50%;
     cursor: pointer;
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
     border: none;
     outline: none;
+    
+    &.small {
+        height: 30px;
+        width: 30px;
+    }
+    
+    &.big {
+        height: 80px;
+        width: 80px;
+    }
     
     @include softUiDark(true);
 }

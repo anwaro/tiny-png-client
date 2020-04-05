@@ -1,0 +1,14 @@
+@import "~scss/variable.scss";
+
+.box {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    max-height: 100%;
+    
+    .info {
+        font-size: 40px;
+    }
+}

@@ -1,14 +1,14 @@
-export type TinyFileInfo = {
+export type FileInfo = {
     path: string;
     name: string;
     size: number;
     isDir: boolean;
 };
 
-export type TinyTreeFileChildren = {
-    [name: string]: TinyTreeFile;
+export type FileChildren = {
+    [name: string]: FileTree;
 };
 
-export type TinyTreeFile = TinyFileInfo & {
-    children: TinyTreeFileChildren;
+export type FileTree = FileInfo & {
+    children: FileChildren;
 };

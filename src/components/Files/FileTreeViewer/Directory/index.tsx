@@ -1,18 +1,23 @@
-import React, {useState} from 'react';
+import React, {useMemo, useState} from 'react';
 
-import {TinyTreeFile} from '@/iterfaces/TinyFile';
-import Image from '@components/Files/FileTree/Image';
+import {childrenToSortedFlatList} from '@utils/sortChildren';
+
+import {FileTree} from '@/iterfaces/TinyFile';
+import Image from '@components/Files/FileTreeViewer/Image';
 import Icon from '@components/Html/Icon';
 
 import styles from './index.module.scss';
 
 type DirectoryProps = {
-    directory: TinyTreeFile;
+    directory: FileTree;
 };
 
 const Directory: React.FC<DirectoryProps> = ({directory}) => {
     const [open, setOpen] = useState(true);
-
+    const childrenList = useMemo(
+        () => childrenToSortedFlatList(directory.children),
+        [directory.children],
+    );
     return (
         <div className={styles.directory}>
             <div className={styles.directoryRow} onClick={() => setOpen(!open)}>
@@ -21,7 +26,7 @@ const Directory: React.FC<DirectoryProps> = ({directory}) => {
             </div>
             {open ? (
                 <div className={styles.child}>
-                    {Object.values(directory.children).map((file) =>
+                    {childrenList.map((file) =>
                         file.isDir ? (
                             <Directory key={file.path} directory={file} />
                         ) : (

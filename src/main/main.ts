@@ -38,9 +38,7 @@ function createWindow(): void {
     });
 
     mainWindow.webContents.openDevTools();
-    installExtension(REACT_DEVELOPER_TOOLS)
-        .then((name: any) => console.log(`Added Extension:  ${name}`))
-        .catch((err: any) => console.log('An error occurred: ', err));
+    installExtension(REACT_DEVELOPER_TOOLS);
 }
 
 // This method will be called when Electron has finished

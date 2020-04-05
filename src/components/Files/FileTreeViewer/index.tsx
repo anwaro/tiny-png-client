@@ -3,16 +3,16 @@ import classNames from 'classnames';
 import React from 'react';
 import {Scrollbars} from 'react-custom-scrollbars';
 
-import Directory from '@components/Files/FileTree/Directory';
-import {TinyTreeFile} from '@/iterfaces/TinyFile';
+import Directory from '@components/Files/FileTreeViewer/Directory';
+import {FileTree} from '@/iterfaces/TinyFile';
 
 import styles from './index.module.scss';
 
-type FilesTreeProps = {
-    filesTree: TinyTreeFile;
+type FileTreeViewerProps = {
+    filesTree: FileTree;
 };
 
-const FilesTree: React.FC<FilesTreeProps> = ({filesTree}) => {
+const FileTreeViewer: React.FC<FileTreeViewerProps> = ({filesTree}) => {
     return (
         <div className={styles.fileTree}>
             <Scrollbars
@@ -33,4 +33,4 @@ const FilesTree: React.FC<FilesTreeProps> = ({filesTree}) => {
     );
 };
 
-export default FilesTree;
+export default FileTreeViewer;
