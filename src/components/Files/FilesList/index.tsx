@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {TinyFile} from '@/iterfaces/TinyFile';
+import {TinyTreeFile} from '@/iterfaces/TinyFile';
 
 import AutoScrollSwitcher from '@components/Files/AutoScrollSwitcher';
 
@@ -11,15 +11,15 @@ import UiBox from '@components/Html/UiBox';
 import styles from './index.module.scss';
 
 type FilesListProps = {
-    files: TinyFile[];
+    filesTree: TinyTreeFile | undefined;
     status: number;
 };
 
-const FilesList: React.FC<FilesListProps> = ({status, files}) => {
+const FilesList: React.FC<FilesListProps> = ({status, filesTree}) => {
     return (
-        <UiBox className={styles.container}>
+        <UiBox className={styles.filesList}>
             <FileListHeader status={status} />
-            <FileTree files={files} />
+            {filesTree ? <FileTree filesTree={filesTree} /> : null}
             <AutoScrollSwitcher />
         </UiBox>
     );

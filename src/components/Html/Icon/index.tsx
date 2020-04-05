@@ -16,6 +16,7 @@ export const Icons = {
     settings: srcs.settings,
     tick: srcs.tick,
     home: srcs.home,
+    folder: srcs.folder,
 };
 
 type IconNamesType = typeof Icons;

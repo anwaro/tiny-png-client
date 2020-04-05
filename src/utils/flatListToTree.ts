@@ -1,8 +1,12 @@
-import {lstatSync} from 'fs';
-
 import {parse, sep} from 'path';
 
-import {TinyFile, TinyTreeFile, TinyTreeFileChildren} from '@/iterfaces/TinyFile';
+import {
+    TinyFileInfo,
+    TinyTreeFile,
+    TinyTreeFileChildren,
+} from '@/iterfaces/TinyFile';
+
+import {readDirFilesRecursive} from '@utils/readDirFiles';
 
 export const escapeRegExp = (regExp: string) =>
     regExp.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
@@ -46,10 +50,12 @@ export const mergeTrees = (origin: TinyTreeFile | undefined, tree: TinyTreeFile)
         : tree;
 
 //
-export const addFileToTree = (tree: TinyTreeFile | undefined, path: TinyFile) => {
-    const pathParts = splitPath(path).reverse();
+export const addFileToTree = (
+    tree: TinyTreeFile | undefined,
+    file: TinyFileInfo,
+) => {
+    const pathParts = splitPath(file.path).reverse();
     const topPart = pathParts.shift();
-    const pathInfo = lstatSync(path);
     let childKey = topPart || '';
 
     const pathTree = pathParts.reduce(
@@ -64,20 +70,17 @@ export const addFileToTree = (tree: TinyTreeFile | undefined, path: TinyFile) =>
                 children: {[key]: childTree},
             };
         },
-        {
-            path: path,
-            name: childKey,
-            size: pathInfo.size,
-            isDir: pathInfo.isDirectory(),
-            children: {},
-        },
+        {...file, children: {}},
     );
 
     return mergeTrees(tree, pathTree);
 };
 
-export const flatListToTree = (fileList: TinyFile[]) =>
-    fileList.reduce(
+export const flatListToTree = (fileList: string[]) => {
+    const allPaths = readDirFilesRecursive(fileList);
+
+    return allPaths.reduce(
         (tree: TinyTreeFile | undefined, path) => addFileToTree(tree, path),
         undefined,
     );
+};

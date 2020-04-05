@@ -2,6 +2,7 @@
     border-radius: 10px;
     display: flex;
     flex-grow: 1;
+    max-height: 100%;
     
     &.active {
         cursor: pointer;

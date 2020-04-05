@@ -12,8 +12,10 @@
       "@utils/*": ["src/utils/*"],
       "@components/*": ["src/components/*"],
       "@controllers/*": ["src/controllers/*"],
+      "@interfaces/*": ["src/interfaces/*"],
+      "@store/*": ["src/store/*"],
       "@assets/*": ["src/assets/*"],
-      "@scss/*": ["src/scss/*"]
+      "scss/*": ["src/scss/*"]
     },
     "moduleResolution": "node",
     "noImplicitAny": true,

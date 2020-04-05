@@ -1,12 +1,11 @@
 import {Image} from '@/iterfaces/Image';
-import {TinyFile} from '@/iterfaces/TinyFile';
 
 import * as TYPES from './types';
 
 export type ImageStore = {
     Images: Image[];
-    activeCategory: TinyFile | undefined;
-    availableCategories: TinyFile[];
+    activeCategory: string | undefined;
+    availableCategories: string[];
     timeToEnd: number;
     loading: boolean;
 };

@@ -1,32 +1,31 @@
 import {useDispatch, useSelector} from 'react-redux';
 
-import {TinyFile} from '@/iterfaces/TinyFile';
 import {Store} from '@/store';
 
 import {setActiveCategory, setAvailableCategories} from './actionCreators';
 
 export const useAvailableCategories = (): [
-    TinyFile[],
-    (availableCategories: TinyFile[]) => void,
+    string[],
+    (availableCategories: string[]) => void,
 ] => {
     const dispatch = useDispatch();
 
     return [
-        useSelector<Store, TinyFile[]>((state) => state.image.availableCategories),
-        (availableCategories: TinyFile[]) =>
+        useSelector<Store, string[]>((state) => state.image.availableCategories),
+        (availableCategories: string[]) =>
             dispatch(setAvailableCategories(availableCategories)),
     ];
 };
 
 export const useActiveCategory = (): [
-    TinyFile | undefined,
-    (availableCategories: TinyFile) => void,
+    string | undefined,
+    (availableCategories: string) => void,
 ] => {
     const dispatch = useDispatch();
     return [
-        useSelector<Store, TinyFile | undefined>(
+        useSelector<Store, string | undefined>(
             (state) => state.image.activeCategory,
         ),
-        (activeCategory: TinyFile) => dispatch(setActiveCategory(activeCategory)),
+        (activeCategory: string) => dispatch(setActiveCategory(activeCategory)),
     ];
 };

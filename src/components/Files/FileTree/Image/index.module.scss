@@ -1,0 +1,17 @@
+.image {
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+    
+    .img {
+        display: inline-block;
+        height: 20px;
+        width: 20px;
+        object-fit: contain;
+    }
+    
+    .imageName {
+        margin-left: 5px;
+        font-size: 14px;
+    }
+}

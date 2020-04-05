@@ -1,22 +1,20 @@
 import React, {useState} from 'react';
 
-import {TinyFile} from '@/iterfaces/TinyFile';
-import {flatListToTree} from '@utils/flatListToTree';
-
 import {Status} from '@/const/status';
 import {RoutingPaths} from '@/controller/Router/AppRouter';
+import {TinyTreeFile} from '@/iterfaces/TinyFile';
 
 import Files from '@components/Files/FilesList';
 import Layout from '@components/Layout';
 import DragOrSelect from '@components/SelectFile/DragOrSelect';
+import {flatListToTree} from '@utils/flatListToTree';
 
 const Dashboard: React.FC = () => {
     const [status, setStatus] = useState(Status.Empty);
-    const [paths, setPaths] = useState<TinyFile[]>([]);
+    const [filesTree, setFilesTree] = useState<TinyTreeFile | undefined>(undefined);
 
-    const processFiles = (files: TinyFile[]) => {
-        setPaths(files);
-        console.log(flatListToTree(files));
+    const processFiles = (files: string[]) => {
+        setFilesTree(flatListToTree(files));
         setStatus(Status.Ready);
     };
 
@@ -35,7 +33,7 @@ const Dashboard: React.FC = () => {
                 {status === Status.Empty ? (
                     'select or drag'
                 ) : (
-                    <Files files={paths} status={status} />
+                    <Files filesTree={filesTree} status={status} />
                 )}
             </DragOrSelect>
         </Layout>

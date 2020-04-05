@@ -27,8 +27,10 @@
         "@utils",
         "@components",
         "@controllers",
+        "@interfaces",
+        "@store",
         "@assets",
-        "@scss"
+        "scss"
       ]
     ],
     "no-import-side-effect": [
