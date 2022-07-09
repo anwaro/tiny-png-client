@@ -1,40 +1,38 @@
 import React from 'react';
 
-import * as srcs from '@assets/index';
+import * as srcs from '~assets/index';
 
-import styles from './index.module.scss';
+import {Image} from './styles';
 
 export const Icons = {
     add: srcs.add,
     checkbox: srcs.checkbox,
+    checkboxChecked: srcs.checkboxChecked,
     close: srcs.close,
+    folder: srcs.folder,
+    home: srcs.home,
     info: srcs.info,
     menu: srcs.menu,
     pause: srcs.pause,
     play: srcs.play,
     prev: srcs.prev,
+    plus: srcs.plus,
+    refresh: srcs.refresh,
     settings: srcs.settings,
     tick: srcs.tick,
-    home: srcs.home,
-    folder: srcs.folder,
+    trash: srcs.trash,
 };
 
 type IconNamesType = typeof Icons;
 
 export type IconProps = {
+    onClick?: () => void;
     name: keyof IconNamesType;
     size?: number;
 };
 
-const Icon: React.FC<IconProps> = ({name, size = 24}) => {
-    return (
-        <img
-            className={styles.button}
-            style={{width: size, height: size}}
-            src={Icons[name]}
-            alt={'Icon'}
-        />
-    );
+const Icon: React.FC<IconProps> = ({name, ...rest}) => {
+    return <Image src={Icons[name]} alt={'Icon'} {...rest} />;
 };
 
 export default Icon;

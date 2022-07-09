@@ -1,2 +1,0 @@
-export const SET_MENU_IS_OPEN = "SET_MENU_IS_OPEN";
-export const SET_NOTIFICATION = "SET_NOTIFICATION";

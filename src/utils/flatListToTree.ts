@@ -1,10 +1,8 @@
-import {parse, sep} from 'path';
+import {FileChildren, FileInfo, FileTree} from '~types/TinyFile';
+import {readDirFilesRecursive} from '~utils/readDirFiles';
+import {reduceFileTree} from '~utils/reduceFileTree';
 
-import {reduceFileTree} from '@utils/reduceFileTree';
-
-import {FileInfo, FileTree, FileChildren} from '@/iterfaces/TinyFile';
-
-import {readDirFilesRecursive} from '@utils/readDirFiles';
+const {parse, sep} = window.require('path');
 
 export const escapeRegExp = (regExp: string) =>
     regExp.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
@@ -23,7 +21,7 @@ export const mergeTreesRecursive = (
     ...originChildren,
     ...Object.keys(treeChildren).reduce(
         (obj: FileChildren, key: string) =>
-            originChildren.hasOwnProperty(key)
+            key in originChildren
                 ? {
                       ...obj,
                       [key]: {
@@ -75,6 +73,6 @@ export const flatListToTree = (fileList: string[]) => {
     const allFile = allPaths.reduce(
         (tree: FileTree | undefined, path) => addFileToTree(tree, path),
         undefined,
-    );
+    ) as FileTree;
     return allFile ? reduceFileTree(allFile) : allFile;
 };

@@ -1,14 +1,13 @@
-import classNames from 'classnames';
-
 import React from 'react';
 
-import {useShowButton} from '@components/Files/FileListHeader/useShowButton';
-import Button from '@components/Html/Button';
+import {useShowButton} from '~components/Files/FileListHeader/useShowButton';
+import {Status} from '~const/status';
 
-import styles from './index.module.scss';
+import {CircleButton, Header} from './styles';
 
 type FileListHeaderProps = {
-    status: number;
+    showed: boolean;
+    status: Status;
     onCancel: () => void;
     onPause: () => void;
     onStart: () => void;
@@ -19,36 +18,31 @@ const FileListHeader: React.FC<FileListHeaderProps> = ({
     onCancel,
     onPause,
     onStart,
+    showed,
 }) => {
-    const showBtn = useShowButton(status);
-
-    const buttonClassName = (show: boolean) =>
-        classNames({
-            [styles.button]: true,
-            [styles.showed]: show,
-        });
+    const showBtn = useShowButton(showed, status);
 
     return (
-        <div className={styles.header}>
-            <Button
+        <Header>
+            <CircleButton
+                showed={showBtn.cancel}
                 onClick={onCancel}
-                className={buttonClassName(showBtn.cancel)}
-                size={'small'}
                 icon="close"
+                small
             />
-            <Button
+            <CircleButton
                 onClick={onPause}
-                className={buttonClassName(showBtn.pause)}
-                size={'small'}
+                showed={showBtn.pause}
                 icon="pause"
+                small
             />
-            <Button
+            <CircleButton
                 onClick={onStart}
-                className={buttonClassName(showBtn.start)}
-                size={'small'}
+                showed={showBtn.start}
                 icon="play"
+                small
             />
-        </div>
+        </Header>
     );
 };
 

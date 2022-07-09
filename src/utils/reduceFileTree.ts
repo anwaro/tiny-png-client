@@ -1,4 +1,4 @@
-import {FileChildren, FileTree} from '@/iterfaces/TinyFile';
+import {FileChildren, FileTree} from '~types/TinyFile';
 
 export const reduceEmptyChildrenRecursive = (
     fileChildren: FileChildren,

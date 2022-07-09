@@ -1,8 +1,7 @@
-import {lstatSync} from 'fs';
+import {FileInfo} from '~types/TinyFile';
 
-import {parse} from 'path';
-
-import {FileInfo} from '@/iterfaces/TinyFile';
+const {lstatSync} = window.require('fs');
+const {parse} = window.require('path');
 
 export const readFileInfo = (path: string): FileInfo => {
     const pathInfo = lstatSync(path);

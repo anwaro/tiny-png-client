@@ -1,13 +1,12 @@
-import {readdirSync} from 'fs';
+import {FileInfo} from '~types/TinyFile';
+import {validFile} from '~utils/filterFiles';
+import {readFileInfo} from '~utils/readFile';
 
-import {join} from 'path';
-
-import {FileInfo} from '@/iterfaces/TinyFile';
-import {validFile} from '@utils/filterFiles';
-import {readFileInfo} from '@utils/readFile';
+const {readdirSync} = window.require('fs');
+const {join} = window.require('path');
 
 export const readDirChild = (path: string): string[] =>
-    readdirSync(path).map((file) => join(path, file));
+    readdirSync(path).map((file: string) => join(path, file));
 
 export const readDirFilesRecursive = (paths: string[]): FileInfo[] => {
     return paths.reduce((accumulator: FileInfo[], path: string) => {

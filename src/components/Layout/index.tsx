@@ -1,17 +1,18 @@
 import React from 'react';
 
-import Menu, {MenuProps} from '@components/Layout/Menu';
+import Menu from '~components/Layout/Menu';
 
-import styles from './index.module.scss';
+import {FCC} from '~types/global';
 
-type LayoutProps = MenuProps & {};
+import GlobalStyle, {Container, LayoutContainer} from './styles';
 
-const Layout: React.FC<LayoutProps> = ({children, leftIcon}) => {
+const Layout: FCC = ({children}) => {
     return (
-        <div className={styles.layout}>
-            <Menu leftIcon={leftIcon} />
-            {children}
-        </div>
+        <LayoutContainer>
+            <GlobalStyle />
+            <Menu />
+            <Container>{children}</Container>
+        </LayoutContainer>
     );
 };
 

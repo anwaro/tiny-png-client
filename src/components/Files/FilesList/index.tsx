@@ -1,17 +1,20 @@
 import React from 'react';
 
-import {Status} from '@/const/status';
-import {FileTree} from '@/iterfaces/TinyFile';
-import AutoScrollSwitcher from '@components/Files/AutoScrollSwitcher';
-import FileListHeader from '@components/Files/FileListHeader';
-import FileTreeViewer from '@components/Files/FileTreeViewer';
-import DragActiveInfo from '@components/SelectFile/DragActiveInfo';
+import {If} from '~components/atoms/If';
 
-import styles from './index.module.scss';
+import AutoScrollSwitcher from '~components/Files/AutoScrollSwitcher';
+import FileListHeader from '~components/Files/FileListHeader';
+import FileTreeViewer from '~components/Files/FileTreeViewer';
+import DragActiveInfo from '~components/SelectFile/DragActiveInfo';
+
+import {Status} from '~const/status';
+import {FileTree} from '~types/TinyFile';
+
+import {Container} from './styles';
 
 type FilesListProps = {
     filesTree: FileTree | undefined;
-    status: number;
+    status: Status;
     onCancel: () => void;
     onPause: () => void;
     onStart: () => void;
@@ -25,20 +28,22 @@ const FilesList: React.FC<FilesListProps> = ({
     filesTree,
 }) => {
     return (
-        <div className={styles.filesList}>
+        <Container>
             <FileListHeader
+                showed={Boolean(filesTree)}
                 status={status}
                 onCancel={onCancel}
                 onPause={onPause}
                 onStart={onStart}
             />
-            {status === Status.Empty ? (
+            <If condition={!filesTree}>
                 <DragActiveInfo />
-            ) : filesTree ? (
+            </If>
+            <If condition={filesTree}>
                 <FileTreeViewer filesTree={filesTree} />
-            ) : null}
+            </If>
             <AutoScrollSwitcher />
-        </div>
+        </Container>
     );
 };
 

@@ -1,50 +1,14 @@
-import {useEffect, useState} from 'react';
+import {useMemo} from 'react';
 
-import {Status} from '@/const/status';
+import {Status} from '~const/status';
 
-export const useShowButton = (status: number) => {
-    const [showBtn, setShowBtn] = useState({
-        cancel: false,
-        start: false,
-        pause: false,
-    });
-
-    useEffect(() => {
-        switch (status) {
-            case Status.Ready: {
-                setShowBtn({
-                    cancel: true,
-                    start: true,
-                    pause: false,
-                });
-                break;
-            }
-            case Status.Paused: {
-                setShowBtn({
-                    cancel: true,
-                    start: true,
-                    pause: false,
-                });
-                break;
-            }
-            case Status.Processing: {
-                setShowBtn({
-                    cancel: true,
-                    start: false,
-                    pause: true,
-                });
-                break;
-            }
-            default: {
-                setShowBtn({
-                    cancel: false,
-                    start: false,
-                    pause: false,
-                });
-                break;
-            }
-        }
-    }, [status]);
-
-    return showBtn;
+export const useShowButton = (showed: boolean, status: Status) => {
+    return useMemo(
+        () => ({
+            cancel: showed,
+            start: showed && status === Status.Paused,
+            pause: showed && status === Status.Processing,
+        }),
+        [showed, status],
+    );
 };

@@ -1,6 +1,6 @@
-import {parse} from 'path';
+import {FileInfo} from '~types/TinyFile';
 
-import {FileInfo} from '@/iterfaces/TinyFile';
+const {parse} = window.require('path');
 
 export const IMAGES_EXT = ['.jpg', '.jpeg', '.png', '.gif'];
 

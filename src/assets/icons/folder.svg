@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve">
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px"
+     y="0px"
+     viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve">
 <g>
 	<g>
 		<g>
@@ -11,7 +12,7 @@
 				c-11.046,0-20,8.954-20,20c0,22.056-17.944,40-40,40h-352c-22.056,0-40-17.944-40-39.999V101.463c0-0.049,0-0.043,0.001-0.026
 				c0.014-22.044,17.952-39.974,39.992-39.974l76.016,0.024c22.051,0.005,39.991,17.948,39.991,40v2.013c0,11.046,8.954,20,20,20
 				l236.003,0.004c5.341-0.001,10.362,2.078,14.14,5.855c3.777,3.776,5.857,8.799,5.857,14.141v167
-				C472.001,321.546,480.955,330.5,492.001,330.5z"  fill="#838689"/>
+				C472.001,321.546,480.955,330.5,492.001,330.5z" fill="#838689"/>
 		</g>
 	</g>
 </g>

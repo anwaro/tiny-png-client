@@ -1,12 +1,13 @@
 import React, {useMemo, useState} from 'react';
 
-import {childrenToSortedFlatList} from '@utils/sortChildren';
+import Image from '~components/Files/FileTreeViewer/ImagePreview';
+import Icon from '~components/Html/Icon';
 
-import {FileTree} from '@/iterfaces/TinyFile';
-import Image from '@components/Files/FileTreeViewer/Image';
-import Icon from '@components/Html/Icon';
+import {FileTree} from '~types/TinyFile';
 
-import styles from './index.module.scss';
+import {childrenToSortedFlatList} from '~utils/sortChildren';
+
+import {Container, DirectoryName, DirectoryRow, DirectoryTree} from './styles';
 
 type DirectoryProps = {
     directory: FileTree;
@@ -19,13 +20,13 @@ const Directory: React.FC<DirectoryProps> = ({directory}) => {
         [directory.children],
     );
     return (
-        <div className={styles.directory}>
-            <div className={styles.directoryRow} onClick={() => setOpen(!open)}>
+        <Container>
+            <DirectoryRow onClick={() => setOpen(!open)}>
                 <Icon name={'folder'} size={16} />
-                <div className={styles.directoryName}>{directory.name}</div>
-            </div>
+                <DirectoryName>{directory.name}</DirectoryName>
+            </DirectoryRow>
             {open ? (
-                <div className={styles.child}>
+                <DirectoryTree>
                     {childrenList.map((file) =>
                         file.isDir ? (
                             <Directory key={file.path} directory={file} />
@@ -33,9 +34,9 @@ const Directory: React.FC<DirectoryProps> = ({directory}) => {
                             <Image key={file.path} image={file} />
                         ),
                     )}
-                </div>
+                </DirectoryTree>
             ) : null}
-        </div>
+        </Container>
     );
 };
 

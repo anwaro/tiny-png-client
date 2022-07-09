@@ -1,38 +1,30 @@
-import classNames from 'classnames';
 import React, {HTMLAttributes} from 'react';
 
-import Icon, {IconProps} from '@components/Html/Icon';
+import Icon, {IconProps} from '~components/Html/Icon';
 
-import styles from './index.module.scss';
+import {StyledButton, StyledButtonProps} from './styles';
 
-type ButtonSize = 'small' | 'normal' | 'big';
+type ButtonProps = HTMLAttributes<HTMLButtonElement> &
+    StyledButtonProps & {
+        icon?: IconProps['name'];
+    };
 
-type ButtonProps = HTMLAttributes<HTMLButtonElement> & {
-    icon?: IconProps['name'];
-    size?: ButtonSize;
-};
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+    ({children, icon, ...restProps}, ref) => {
+        return (
+            <StyledButton ref={ref} {...restProps}>
+                {icon ? (
+                    <Icon
+                        name={icon}
+                        size={restProps.big ? 30 : restProps.small ? 16 : 20}
+                    />
+                ) : null}
+                {children}
+            </StyledButton>
+        );
+    },
+);
 
-const Button: React.FC<ButtonProps> = ({
-    children,
-    icon,
-    className,
-    size = 'normal',
-    ...restProps
-}) => {
-    return (
-        <button
-            className={classNames(styles.button, styles[size], className)}
-            {...restProps}
-        >
-            {icon ? (
-                <Icon
-                    name={icon}
-                    size={size === 'big' ? 30 : size === 'small' ? 16 : 20}
-                />
-            ) : null}
-            {children}
-        </button>
-    );
-};
+Button.displayName = 'Button';
 
 export default Button;

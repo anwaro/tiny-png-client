@@ -1,11 +1,11 @@
 import React from 'react';
 
-import styles from './index.module.scss';
+import {Container} from './styles';
 
 type AutoScrollSwitcherProps = {};
 
 const AutoScrollSwitcher: React.FC<AutoScrollSwitcherProps> = () => {
-    return <div className={styles.container}>AutoScrollSwitcher</div>;
+    return <Container>AutoScrollSwitcher</Container>;
 };
 
 export default AutoScrollSwitcher;

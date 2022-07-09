@@ -1,13 +1,9 @@
 import React from 'react';
 
-import styles from './index.module.scss';
+import {Container} from './styles';
 
 const DragActiveInfo: React.FC = () => {
-    return (
-        <div className={styles.box}>
-            <div className={styles.info}>{'Drag/select files or directory'}</div>
-        </div>
-    );
+    return <Container>{'Drag/select files or directory'}</Container>;
 };
 
 export default DragActiveInfo;

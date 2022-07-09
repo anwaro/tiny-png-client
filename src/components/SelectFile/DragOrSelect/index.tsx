@@ -1,22 +1,18 @@
-import classNames from 'classnames';
 import React, {DragEvent, useState} from 'react';
 
-import UiBox from '@components/Html/UiBox';
-import {fileListToPathList} from '@utils/fileListToPathList';
-import {openFileSelectDialog} from '@utils/openFileSelectDialog';
+import {FCC} from '~types/global';
 
-import styles from './index.module.scss';
+import {fileListToPathList} from '~utils/fileListToPathList';
+import {openFileSelectDialog} from '~utils/openFileSelectDialog';
+
+import {Container} from './styles';
 
 type DragOrSelectProps = {
-    processFiles: (paths: string[]) => void;
+    processFiles: (_paths: string[]) => void;
     active: boolean;
 };
 
-const DragOrSelect: React.FC<DragOrSelectProps> = ({
-    processFiles,
-    children,
-    active,
-}) => {
+const DragOrSelect: FCC<DragOrSelectProps> = ({processFiles, children, active}) => {
     const [onDrag, setOnDrag] = useState(false);
 
     const openDialog = () => {
@@ -42,21 +38,14 @@ const DragOrSelect: React.FC<DragOrSelectProps> = ({
               onDragEnter: onDragHandler(true),
               onDragOver: onDragHandler(true),
               onDragLeave: onDragHandler(false),
-              onDrop: onDrop,
+              onDrop,
           }
         : {};
 
     return (
-        <UiBox
-            className={classNames({
-                [styles.container]: true,
-                [styles.active]: active,
-                [styles.drag]: onDrag && active,
-            })}
-            {...selectEvents}
-        >
+        <Container active={active} isDrag={active && onDrag} {...selectEvents}>
             {children}
-        </UiBox>
+        </Container>
     );
 };
 
