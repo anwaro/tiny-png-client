@@ -6,7 +6,7 @@ export const IMAGES_EXT = ['.jpg', '.jpeg', '.png', '.gif'];
 
 const isImage = (path: string) => {
     const parsedPath = parse(path);
-    return IMAGES_EXT.includes(parsedPath.ext);
+    return IMAGES_EXT.includes(parsedPath.ext.toLowerCase());
 };
 
 export const isHiddenFile = (name: string) => /^\..*/.test(name);

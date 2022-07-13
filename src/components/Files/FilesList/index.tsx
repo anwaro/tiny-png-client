@@ -2,7 +2,6 @@ import React from 'react';
 
 import {If} from '~components/atoms/If';
 
-import AutoScrollSwitcher from '~components/Files/AutoScrollSwitcher';
 import FileListHeader from '~components/Files/FileListHeader';
 import FileTreeViewer from '~components/Files/FileTreeViewer';
 import DragActiveInfo from '~components/SelectFile/DragActiveInfo';
@@ -42,7 +41,6 @@ const FilesList: React.FC<FilesListProps> = ({
             <If condition={filesTree}>
                 <FileTreeViewer filesTree={filesTree} />
             </If>
-            <AutoScrollSwitcher />
         </Container>
     );
 };

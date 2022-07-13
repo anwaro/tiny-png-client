@@ -36,11 +36,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.setupActions = void 0;
-var path_1 = require("path");
 var electron_1 = require("electron");
-var setupActions = function () {
-    electron_1.ipcMain.handle('OPEN_DIALOG', function (e, options) { return __awaiter(void 0, void 0, void 0, function () {
+var types_1 = require("./types");
+function setupDialog() {
+    var _this = this;
+    electron_1.ipcMain.handle(types_1.IcpEvent.OpenDialog, function (e, options) { return __awaiter(_this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             return [2 /*return*/, electron_1.dialog
                     .showOpenDialog(options)
@@ -52,10 +52,6 @@ var setupActions = function () {
                 })];
         });
     }); });
-    electron_1.protocol.registerFileProtocol('atom', function (request, callback) {
-        var url = request.url.substr(7);
-        callback(decodeURI((0, path_1.normalize)(url)));
-    });
-};
-exports.setupActions = setupActions;
-//# sourceMappingURL=actions.js.map
+}
+exports.default = setupDialog;
+//# sourceMappingURL=dialog.js.map

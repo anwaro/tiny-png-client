@@ -50,6 +50,18 @@ export const useSaveMode = () => {
     };
 };
 
+export const useParallelCount = () => {
+    const {settings, setSettings} = useApp();
+    return {
+        parallelCount: settings.parallelCount,
+        setParallelCount: (parallelCount: number) =>
+            setSettings({
+                ...settings,
+                parallelCount,
+            }),
+    };
+};
+
 export const useApiKeys = () => {
     const {settings, setSettings} = useApp();
     const updateKey = (key: ApiKey) =>

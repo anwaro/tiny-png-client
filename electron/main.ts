@@ -6,7 +6,7 @@ import {join} from 'path';
 import Electron, {app, BrowserWindow} from 'electron';
 import installExtension, {REACT_DEVELOPER_TOOLS} from 'electron-devtools-installer';
 
-import {setupActions} from './actions';
+import setupIpc from '../src/ipc';
 
 let mainWindow: Electron.BrowserWindow | null;
 
@@ -21,8 +21,8 @@ function createWindow(): void {
             nodeIntegration: true,
             webSecurity: false,
             contextIsolation: false,
-            // devTools: process.env.NODE_ENV === 'production' ? false : true
-            devTools: true,
+            devTools: process.env.NODE_ENV !== 'production',
+            // devTools: true,
         },
     });
 
@@ -55,13 +55,9 @@ function createWindow(): void {
 }
 
 app.whenReady().then(() => {
-    // DevTools
-    installExtension(REACT_DEVELOPER_TOOLS)
-        .then((name) => console.log(`Added Extension:  ${name}`))
-        .catch((err) => console.log('An error occurred: ', err));
-
+    installExtension(REACT_DEVELOPER_TOOLS).catch(() => {});
     createWindow();
-    setupActions();
+    setupIpc();
 
     app.on('activate', () => {
         if (BrowserWindow.getAllWindows().length === 0) {

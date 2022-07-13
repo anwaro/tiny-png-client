@@ -22,6 +22,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * Entry point of the Election app.
@@ -29,7 +32,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var path_1 = require("path");
 var electron_1 = require("electron");
 var electron_devtools_installer_1 = __importStar(require("electron-devtools-installer"));
-var actions_1 = require("./actions");
+var ipc_1 = __importDefault(require("../src/ipc"));
 var mainWindow;
 function createWindow() {
     mainWindow = new electron_1.BrowserWindow({
@@ -42,8 +45,8 @@ function createWindow() {
             nodeIntegration: true,
             webSecurity: false,
             contextIsolation: false,
-            // devTools: process.env.NODE_ENV === 'production' ? false : true
-            devTools: true,
+            devTools: process.env.NODE_ENV !== 'production',
+            // devTools: true,
         },
     });
     // and load the index.html of the app.
@@ -65,12 +68,9 @@ function createWindow() {
     });
 }
 electron_1.app.whenReady().then(function () {
-    // DevTools
-    (0, electron_devtools_installer_1.default)(electron_devtools_installer_1.REACT_DEVELOPER_TOOLS)
-        .then(function (name) { return console.log("Added Extension:  ".concat(name)); })
-        .catch(function (err) { return console.log('An error occurred: ', err); });
+    (0, electron_devtools_installer_1.default)(electron_devtools_installer_1.REACT_DEVELOPER_TOOLS).catch(function () { });
     createWindow();
-    (0, actions_1.setupActions)();
+    (0, ipc_1.default)();
     electron_1.app.on('activate', function () {
         if (electron_1.BrowserWindow.getAllWindows().length === 0) {
             createWindow();

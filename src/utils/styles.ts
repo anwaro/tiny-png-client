@@ -13,6 +13,6 @@ export const active = css`
 
 export const softUiDark = (withActive = false) => css`
     background: linear-gradient(145deg, ${bg1}, ${bg2});
-    box-shadow: 5px 5px 10px ${gradient1}, -5px -5px 10px ${gradient2};
+    box-shadow: 5px 5px 10px ${gradient1}, -3px -3px 7px ${gradient2};
     ${withActive && active}
 `;

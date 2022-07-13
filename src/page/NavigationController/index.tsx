@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
 
+import {useIsDashboard} from '~providers/AppProvider';
+
 import {FCC} from '~types/global';
 import {useNavigationSubscription} from '~utils/hooks/useNavigation';
-
-import {useIsDashboard} from '~providers/AppProvider';
 
 type NavigationControllerProps = {
     title: string;

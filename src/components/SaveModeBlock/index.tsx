@@ -1,9 +1,9 @@
 import React from 'react';
 
 import ModelSelect from '~components/SaveModeBlock/ModeSelect';
-import {SaveMode} from '~types/Settings';
 
-import {usePrefixes, useSaveMode} from '../../providers/AppProvider';
+import {usePrefixes, useSaveMode} from '~providers/AppProvider';
+import {SaveMode} from '~types/Settings';
 
 import {Container, Pre} from './styles';
 
@@ -13,7 +13,7 @@ const SaveModeBlock = () => {
 
     return (
         <Container>
-            <h3>How save compressed files</h3>
+            <h3>How to save compressed files</h3>
             <ModelSelect
                 mode={SaveMode.Overwrite}
                 activeMode={saveMode}

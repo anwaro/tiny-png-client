@@ -1,8 +1,10 @@
 import {FileChildren, FileInfo, FileTree} from '~types/TinyFile';
 import {readDirFilesRecursive} from '~utils/readDirFiles';
+import {readFileInfo} from '~utils/readFile';
 import {reduceFileTree} from '~utils/reduceFileTree';
+import {childrenToSortedFlatList} from '~utils/sortChildren';
 
-const {parse, sep} = window.require('path');
+const {parse, sep, join} = window.require('path');
 
 export const escapeRegExp = (regExp: string) =>
     regExp.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
@@ -12,6 +14,11 @@ export const splitPath = (path: string) => {
     return `${path}`
         .replace(new RegExp(`^${escapeRegExp(parsedPath.root)}`), '')
         .split(sep);
+};
+
+export const joinPath = (fullPath: string, paths: string[]) => {
+    const parsedPath = parse(fullPath);
+    return join(parsedPath.root, ...paths);
 };
 
 export const mergeTreesRecursive = (
@@ -46,19 +53,22 @@ export const mergeTrees = (origin: FileTree | undefined, tree: FileTree) =>
         : tree;
 
 export const addFileToTree = (tree: FileTree | undefined, file: FileInfo) => {
-    const pathParts = splitPath(file.path).reverse();
-    const topPart = pathParts.shift();
-    let childKey = topPart || '';
+    const pathParts = splitPath(file.path)
+        .map((e, i, a) =>
+            joinPath(
+                file.path,
+                a.filter((_, j) => j <= i),
+            ),
+        )
+        .reverse();
+    let childKey = pathParts.shift() || '';
 
     const pathTree = pathParts.reduce(
         (childTree: FileTree, path: string) => {
             const key = childKey;
             childKey = path;
             return {
-                path: path,
-                name: path,
-                size: 0,
-                isDir: true,
+                ...readFileInfo(path, 'fake'),
                 children: {[key]: childTree},
             };
         },
@@ -76,3 +86,10 @@ export const flatListToTree = (fileList: string[]) => {
     ) as FileTree;
     return allFile ? reduceFileTree(allFile) : allFile;
 };
+
+export const treeToFlatList = ({children, ...file}: FileTree): FileInfo[] => [
+    file,
+    ...childrenToSortedFlatList(children)
+        .map(treeToFlatList)
+        .reduce((prev, val) => [...prev, ...val], []),
+];

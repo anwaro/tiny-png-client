@@ -1,3 +1,5 @@
+import {API_URL} from '~const/routes';
+
 import {objectHas} from './object';
 
 export type QueryParamsType = Record<
@@ -9,7 +11,9 @@ export const createUrl = (baseUrl: string | undefined, path: string) => {
     if (/https?:/.test(path)) {
         return path;
     }
-    return [(baseUrl || '').replace(/\/$/, ''), path.replace(/^\//, '')].join('/');
+    return [(baseUrl || API_URL).replace(/\/$/, ''), path.replace(/^\//, '')].join(
+        '/',
+    );
 };
 
 export const resolveUrl = (

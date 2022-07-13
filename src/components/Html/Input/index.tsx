@@ -23,6 +23,10 @@ const Input = styled.input<StyledInputProps>`
     flex: 1;
     color: ${text};
     padding: 2px 10px;
+
     ${softUiDark()}
+    &:focus, &:active {
+        ${softUiDark(true)}
+    }
 `;
 export default Input;

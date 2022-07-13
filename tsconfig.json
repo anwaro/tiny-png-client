@@ -11,15 +11,17 @@
             "~assets/*": ["src/assets/*"],
             "~components/*": ["src/components/*"],
             "~const/*": ["src/const/*"],
-            "~page/*": ["src/page/*"],
+            "~hooks/*": ["src/hooks/*"],
             "~main/*": ["src/main/*"],
             "~models/*": ["src/models/*"],
-            "~providers/*": ["src/providers/*"],
+            "~page/*": ["src/page/*"],
             "~public/*": ["public/*"],
+            "~providers/*": ["src/providers/*"],
             "~scss/*": ["src/scss/*"],
             "~store/*": ["src/store/*"],
             "~types/*": ["src/types/*"],
-            "~utils/*": ["src/utils/*"]
+            "~utils/*": ["src/utils/*"],
+            "~ipc/*": ["src/ipc/*"]
         },
         "jsx": "react"
     },

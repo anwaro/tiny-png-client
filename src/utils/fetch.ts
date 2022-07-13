@@ -22,3 +22,7 @@ export const fetchHeaders = ({headers}: FetchHeaders) => {
         },
     };
 };
+
+export const authHeader = (token?: string) => ({
+    Authorization: 'Basic ' + btoa(`api:${token}`),
+});

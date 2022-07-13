@@ -1,3 +1,5 @@
+import {IcpEvent} from '~ipc/types';
+
 const electron = window.require('electron');
 
 const filesDialogOptions: any = {
@@ -7,7 +9,7 @@ const filesDialogOptions: any = {
 };
 
 export const openFileSelectDialog = () => {
-    return electron.ipcRenderer.invoke('OPEN_DIALOG', filesDialogOptions);
+    return electron.ipcRenderer.invoke(IcpEvent.OpenDialog, filesDialogOptions);
 };
 
 const folderDialogOptions: any = {
@@ -16,5 +18,5 @@ const folderDialogOptions: any = {
 };
 
 export const openDirSelectDialog = () => {
-    return electron.ipcRenderer.invoke('OPEN_DIALOG', folderDialogOptions);
+    return electron.ipcRenderer.invoke(IcpEvent.OpenDialog, folderDialogOptions);
 };

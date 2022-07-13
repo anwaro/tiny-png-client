@@ -28,6 +28,7 @@ export const initialPrefixes: Prefixes = {
 };
 
 export type SettingsType = {
+    parallelCount: number;
     saveMode: SaveMode;
     activeKey?: string;
     keys: ApiKey[];
@@ -36,6 +37,7 @@ export type SettingsType = {
 };
 
 export const initialSettings: SettingsType = {
+    parallelCount: 1,
     saveMode: SaveMode.Suffix,
     activeKey: undefined,
     keys: [],

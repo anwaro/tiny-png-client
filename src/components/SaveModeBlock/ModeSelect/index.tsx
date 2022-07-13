@@ -59,8 +59,12 @@ const ModelSelect: FCC<ModelSelectProps> = ({
                 </If>
                 <If condition={pathValueChange}>
                     <Row>
-                        <Input value={pathValue} disabled />
-                        <Button onClick={selectFolder}>Select path</Button>
+                        <Input
+                            value={pathValue}
+                            onMouseDown={selectFolder}
+                            readOnly
+                        />
+                        <Button onClick={selectFolder} icon={'folder'} />
                     </Row>
                 </If>
             </If>

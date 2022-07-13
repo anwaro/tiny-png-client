@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-import {fetchHeaders, FetchRequestInit} from '~utils/fetch';
+import {useActiveKey} from '~providers/AppProvider';
+
+import {authHeader, fetchHeaders, FetchRequestInit} from '~utils/fetch';
 import {resolveUrl} from '~utils/url';
 
 export const fetchAction = async (
@@ -25,5 +27,23 @@ export const fetchAction = async (
     return axios(options);
 };
 
-export const postAction = async (url: string, options: FetchRequestInit = {}) =>
-    await fetchAction(url, {...options, method: 'POST'});
+export function useApiCall(method: string) {
+    const {activeKey} = useActiveKey();
+    return async (url: string, options: FetchRequestInit = {}) =>
+        await fetchAction(url, {
+            headers: {
+                ...authHeader(activeKey.key),
+                ...options.headers,
+            },
+            ...options,
+            method,
+        });
+}
+
+export function useGet() {
+    return useApiCall('GET');
+}
+
+export function usePost() {
+    return useApiCall('POST');
+}

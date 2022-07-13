@@ -1,12 +1,15 @@
-import {postAction} from './fetch';
+import {Routes} from '~const/routes';
+import {authHeader} from '~utils/fetch';
+import {responseToCompressionCount} from '~utils/tiny';
+
+import {usePost} from './fetch';
 
 export const useFetchApiLimit = () => {
+    const post = usePost();
     return async (key: string) => {
-        const res = await postAction('https://api.tinify.com/shrink', {
-            headers: {
-                Authorization: 'Basic ' + btoa(`api:${key}`),
-            },
+        const res = await post(Routes.Shrink, {
+            headers: authHeader(key),
         }).catch(({response}) => response);
-        return parseInt(res.headers['compression-count'] || '-1');
+        return responseToCompressionCount(res);
     };
 };
